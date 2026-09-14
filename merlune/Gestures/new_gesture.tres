@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GestureTemplate" format=3 uid="uid://35su0nyu5key"]
+
+[ext_resource type="Script" uid="uid://kkrbx6fi7ni1" path="res://GestureTemplate.gd" id="1_gesture"]
+
+[resource]
+script = ExtResource("1_gesture")
+gesture_name = "Whirl"
+points = Array[Vector2]([Vector2(347, 302), Vector2(240, 300), Vector2(190, 220), Vector2(220, 130), Vector2(320, 110), Vector2(380, 160), Vector2(380, 240), Vector2(320, 260), Vector2(251, 258), Vector2(226, 202), Vector2(246, 144), Vector2(313, 140), Vector2(356, 179), Vector2(350, 230), Vector2(280, 230), Vector2(260, 200), Vector2(290, 180), Vector2(320, 200)])
+spell_color = Color(0.6617998, 0.87235713, 0.96176034, 1)
+allow_flipped_h = true

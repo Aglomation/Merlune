@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GestureTemplate" format=3 uid="uid://cgqxmvvfd538u"]
+
+[ext_resource type="Script" uid="uid://kkrbx6fi7ni1" path="res://GestureTemplate.gd" id="1_gesture"]
+
+[resource]
+script = ExtResource("1_gesture")
+gesture_name = "fih"
+points = Array[Vector2]([Vector2(395, 280), Vector2(392, 223), Vector2(361, 206), Vector2(338, 218), Vector2(335, 262), Vector2(393, 277), Vector2(391, 332), Vector2(451, 295), Vector2(395, 275)])
+spell_color = Color(0.592, 0.482, 0.6, 1)
+is_closed_shape = true
+allow_flipped_h = true

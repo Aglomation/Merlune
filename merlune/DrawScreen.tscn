@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dpoh2fimgox22"]
+
+[ext_resource type="Script" uid="uid://ltaa40n7dsud" path="res://GestureCanvas.gd" id="1_avjv3"]
+[ext_resource type="Script" uid="uid://kkrbx6fi7ni1" path="res://GestureTemplate.gd" id="2_cm76l"]
+[ext_resource type="Resource" uid="uid://35su0nyu5key" path="res://Gestures/new_gesture.tres" id="3_niamb"]
+[ext_resource type="Resource" path="res://Gestures/dihhh.tres" id="4_niamb"]
+[ext_resource type="Resource" uid="uid://c763qi5qxru3w" path="res://Gestures/star.tres" id="5_kv8hr"]
+[ext_resource type="Resource" uid="uid://d3thp13eo0hb8" path="res://Gestures/wdawdawdawdawdture.tres" id="6_2ciud"]
+[ext_resource type="Resource" path="res://Gestures/water.tres" id="7_54jt6"]
+[ext_resource type="Resource" path="res://Gestures/circle.tres" id="8_ifhl2"]
+[ext_resource type="Resource" path="res://Gestures/fih.tres" id="9_yq33s"]
+
+[node name="DrawScreen" type="Control" unique_id=2142419191]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_avjv3")
+gesture_templates = Array[ExtResource("2_cm76l")]([ExtResource("3_niamb"), ExtResource("4_niamb"), ExtResource("5_kv8hr"), ExtResource("6_2ciud"), ExtResource("7_54jt6"), ExtResource("8_ifhl2"), ExtResource("9_yq33s")])
+
+[node name="Label" type="Label" parent="." unique_id=1067135156]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
