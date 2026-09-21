@@ -1,14 +1,17 @@
 class_name GestureCanvas
 extends Control
+
 signal starting_draw
 signal draw_complete(gesture_name: String)
 
+
 @export var gesture_templates: Array[GestureTemplate] = []
+## Max average distance to still count as a match. Lower = stricter.
 @export_range(0.1, 0.5) var match_threshold: float = 0.20
-@export_range(0.1, 1.0) var shape_complexity_tolerance: float = 0.45
 @export_range(0.05, 1.0) var closed_shape_gap_tolerance: float = 0.35
 @export var min_gesture_size_px: float = 40.0
-@export var default_line_color: Color = Color.WHITE
+@export var default_line_color: Color = Color.WEB_GRAY
+@export var none_line_color: Color = Color.WHITE
 @export var line_width: float = 8.0
 var current_stroke: Array[Vector2] = []
 var is_drawing: bool = false
@@ -44,19 +47,22 @@ func continue_stroke(pos: Vector2) -> void:
 		current_stroke.append(pos)
 		feedback_line.add_point(pos)
 
-		var result: String = _recognize(current_stroke)
+		var result := _recognize(current_stroke)
 
-		if result != "":
-			print("It's a "+result)
+		if result["name"] != "":
+			print("It's a %s (%.3f)" % [result["name"], result["score"]])
 			# Changes color to the spell color if matched
 			for template in gesture_templates:
-				if template.gesture_name == result:
+				if template.gesture_name == result["name"]:
 					feedback_line.default_color = template.spell_color
 					break
 		else:
-			print("idk")
+			print("Closest'%s' (%.3f)" % [result["closest"], result["score"]])
 			# Reverts to default color if you mess it up
-			feedback_line.default_color = default_line_color
+			if result["score"] == INF:
+				feedback_line.default_color = default_line_color
+			else:
+				feedback_line.default_color = none_line_color
 # When you stop stroking it or smth
 func end_stroke() -> void:
 	if not is_drawing:
@@ -64,21 +70,22 @@ func end_stroke() -> void:
 	is_drawing = false
 
 	# Gets final result
-	var result: String = _recognize(current_stroke)
-	draw_complete.emit(result)
-	$Label.text = result if result else "Fail"
+	var result := _recognize(current_stroke)
+	var gesture_name: String = result["name"]
+	draw_complete.emit(gesture_name)
+	$Label.text = gesture_name if gesture_name else "Fail"
 
 	# Removes the lines
 	feedback_line.clear_points()
 	current_stroke.clear()
-# Single place that wires up the new rejection thresholds, so the live-preview
+# Single place that wires up the thresholds, so the live-preview
 # and final-commit calls can never drift out of sync with each other.
-func _recognize(stroke: Array[Vector2]) -> String:
-	return GestureRecognizer.recognize(
+# Returns the whole result dict (name, closest, score, scores).
+func _recognize(stroke: Array[Vector2]) -> Dictionary:
+	return GestureRecognizer.recognize_scored(
 		stroke,
 		gesture_templates,
 		match_threshold,
-		shape_complexity_tolerance,
 		closed_shape_gap_tolerance,
 		min_gesture_size_px
 	)

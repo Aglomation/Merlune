@@ -10,12 +10,6 @@ extends Resource
 @export var allow_flipped_h: bool = false
 @export var normalize_on_load: bool = true
 
-# Path length / bounding-box diagonal of the ORIGINAL authored points,
-# captured before optimize_template() resamples+normalizes `points` below.
-# GestureRecognizer uses this to reject drawings that don't have a similar
-# level of "wiggliness", even if their point clouds happen to line up.
-var expected_ratio: float = 1.0
-
 func _init() -> void:
 	call_deferred("_check_optimize")
 
@@ -24,10 +18,8 @@ func _check_optimize() -> void:
 		optimize_template()
 
 func optimize_template() -> void:
-	# Only capture the ratio from genuinely raw, hand-authored points - if
-	# this runs again later on already-optimized data (e.g. the resource
-	# gets duplicated at runtime), don't let it drift.
-	if points.size() != GestureRecognizer.NUM_POINTS:
-		expected_ratio = GestureRecognizer.get_complexity_ratio(points)
-	points = GestureRecognizer.resample(points, GestureRecognizer.NUM_POINTS)
+	if is_closed_shape:
+		points = GestureRecognizer.resample_closed(points, GestureRecognizer.NUM_POINTS)
+	else:
+		points = GestureRecognizer.resample(points, GestureRecognizer.NUM_POINTS)
 	points = GestureRecognizer.normalize_shape(points)
