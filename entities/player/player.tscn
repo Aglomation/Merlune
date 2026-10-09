@@ -1,0 +1,62 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_player"]
+[ext_resource type="Texture2D" path="res://Assets/Temp/Merlune.png" id="2_texture"]
+[ext_resource type="Script" path="res://combat/health_component.gd" id="3_health"]
+[ext_resource type="Script" path="res://combat/status_component.gd" id="4_status"]
+[ext_resource type="Script" path="res://combat/hitbox_component.gd" id="5_hitbox"]
+[ext_resource type="Script" path="res://spells/spell_caster.gd" id="6_caster"]
+[ext_resource type="Script" path="res://spells/spell_data.gd" id="7_data"]
+[ext_resource type="Resource" path="res://spells/library/fireball.tres" id="8_fireball"]
+[ext_resource type="Resource" path="res://spells/library/water_splash.tres" id="9_water"]
+[ext_resource type="Resource" path="res://spells/library/heal.tres" id="10_heal"]
+[ext_resource type="Resource" path="res://spells/library/lava.tres" id="11_lava"]
+[ext_resource type="Resource" path="res://spells/library/lightning.tres" id="12_lightning"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hit"]
+radius = 7.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_player")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_texture")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_body")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_health")
+max_health = 100.0
+free_on_death = false
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("4_status")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "status_component")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("5_hitbox")
+health_component = NodePath("../Health")
+status_component = NodePath("../Status")
+invulnerable_time = 0.7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_hit")
+
+[node name="SpellCaster" type="Node" parent="."]
+script = ExtResource("6_caster")
+spells = Array[ExtResource("7_data")]([ExtResource("8_fireball"), ExtResource("9_water"), ExtResource("10_heal"), ExtResource("11_lava"), ExtResource("12_lightning")])
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0

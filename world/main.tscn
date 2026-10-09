@@ -1,0 +1,51 @@
+[gd_scene load_steps=17 format=3]
+
+[ext_resource type="Script" path="res://world/game.gd" id="1_game"]
+[ext_resource type="PackedScene" path="res://world/arena.tscn" id="2_arena"]
+[ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="3_player"]
+[ext_resource type="Script" path="res://world/enemy_spawner.gd" id="4_spawner"]
+[ext_resource type="PackedScene" path="res://entities/enemies/ghost.tscn" id="5_ghost"]
+[ext_resource type="PackedScene" path="res://entities/enemies/phantom.tscn" id="6_phantom"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="7_hud"]
+[ext_resource type="Script" path="res://ui/aim_reticle.gd" id="8_reticle"]
+[ext_resource type="Script" path="res://gestures/gesture_canvas.gd" id="9_canvas"]
+[ext_resource type="Script" path="res://gestures/gesture_template.gd" id="10_template"]
+[ext_resource type="Resource" path="res://gestures/templates/star.tres" id="11_star"]
+[ext_resource type="Resource" path="res://gestures/templates/water.tres" id="12_water"]
+[ext_resource type="Resource" path="res://gestures/templates/heart.tres" id="13_heart"]
+[ext_resource type="Resource" path="res://gestures/templates/lava.tres" id="14_lava"]
+[ext_resource type="Resource" path="res://gestures/templates/lightning.tres" id="15_lightning"]
+
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_game")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="Arena" parent="." instance=ExtResource("2_arena")]
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(392, 264)
+
+[node name="EnemySpawner" type="Node" parent="."]
+script = ExtResource("4_spawner")
+enemy_scenes = Array[PackedScene]([ExtResource("5_ghost"), ExtResource("6_phantom")])
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="HUD" parent="UI" instance=ExtResource("7_hud")]
+
+[node name="AimReticle" type="Node2D" parent="UI"]
+script = ExtResource("8_reticle")
+
+[node name="GestureCanvas" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_canvas")
+gesture_templates = Array[ExtResource("10_template")]([ExtResource("11_star"), ExtResource("12_water"), ExtResource("13_heart"), ExtResource("14_lava"), ExtResource("15_lightning")])

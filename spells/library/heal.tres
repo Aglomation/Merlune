@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SpellData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://spells/spell_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://spells/effects/self_effect.tscn" id="2_effect"]
+
+[resource]
+script = ExtResource("1_data")
+display_name = "Heal"
+gesture_name = "Heart"
+element = 3
+color = Color(0.4, 0.9, 0.4, 1)
+effect_scene = ExtResource("2_effect")
+recast_delay = 8.0
+damage = 0.0
+heal_amount = 15.0

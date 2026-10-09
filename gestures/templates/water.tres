@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GestureTemplate" format=3]
+
+[ext_resource type="Script" path="res://gestures/gesture_template.gd" id="1_gesture"]
+
+[resource]
+script = ExtResource("1_gesture")
+gesture_name = "Water"
+points = Array[Vector2]([Vector2(299, 128), Vector2(284, 203), Vector2(263, 231), Vector2(258, 264), Vector2(276, 292), Vector2(323, 291), Vector2(343, 260), Vector2(335, 225), Vector2(312, 199), Vector2(300, 127)])
+spell_color = Color(0.357, 0.573, 0.725, 1)
+is_closed_shape = true

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpellData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://spells/spell_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://spells/effects/lightning_effect.tscn" id="2_effect"]
+
+[resource]
+script = ExtResource("1_data")
+display_name = "Lightning"
+gesture_name = "Lightning"
+element = 4
+color = Color(1, 0.95, 0.4, 1)
+effect_scene = ExtResource("2_effect")
+recast_delay = 0.5
+snap_to_enemies = true
+damage = 6.0
+knockback = 50.0
+lifetime = 0.2
+beam_length = 220.0
+beam_width = 12.0

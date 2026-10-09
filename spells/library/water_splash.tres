@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SpellData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://spells/spell_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://spells/effects/projectile_effect.tscn" id="2_effect"]
+
+[resource]
+script = ExtResource("1_data")
+display_name = "Water Splash"
+gesture_name = "Water"
+element = 2
+color = Color(0.3, 0.6, 1, 1)
+effect_scene = ExtResource("2_effect")
+recast_delay = 0.4
+snap_to_enemies = true
+damage = 8.0
+knockback = 170.0
+speed = 210.0
+lifetime = 1.4
+radius = 22.0
+status = "wet"
+status_time = 5.0

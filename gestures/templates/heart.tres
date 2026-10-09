@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GestureTemplate" format=3 uid="uid://duunx7isjulvr"]
+
+[ext_resource type="Script" uid="uid://kkrbx6fi7ni1" path="res://gestures/gesture_template.gd" id="1_gesture"]
+
+[resource]
+script = ExtResource("1_gesture")
+gesture_name = "Heart"
+points = Array[Vector2]([Vector2(100, 168), Vector2(99.86, 166.95), Vector2(98.89, 163.89), Vector2(96.41, 159.12), Vector2(92, 153.03), Vector2(85.56, 146.03), Vector2(77.37, 138.43), Vector2(68.04, 130.41), Vector2(58.43, 122), Vector2(49.53, 113.15), Vector2(42.32, 103.79), Vector2(37.63, 93.99), Vector2(36, 84), Vector2(37.63, 74.3), Vector2(42.32, 65.56), Vector2(49.53, 58.57), Vector2(58.43, 54), Vector2(68.04, 52.31), Vector2(77.37, 53.57), Vector2(85.56, 57.4), Vector2(92, 62.97), Vector2(96.41, 69.16), Vector2(98.89, 74.75), Vector2(99.86, 78.62), Vector2(100, 80), Vector2(100.14, 78.62), Vector2(101.11, 74.75), Vector2(103.59, 69.16), Vector2(108, 62.97), Vector2(114.44, 57.4), Vector2(122.63, 53.57), Vector2(131.96, 52.31), Vector2(141.57, 54), Vector2(150.47, 58.57), Vector2(157.68, 65.56), Vector2(162.37, 74.3), Vector2(164, 84), Vector2(162.37, 93.99), Vector2(157.68, 103.79), Vector2(150.47, 113.15), Vector2(141.57, 122), Vector2(131.96, 130.41), Vector2(122.63, 138.43), Vector2(114.44, 146.03), Vector2(108, 153.03), Vector2(103.59, 159.12), Vector2(101.11, 163.89), Vector2(100.14, 166.95), Vector2(100, 168)])
+spell_color = Color(0.4, 0.9, 0.4, 1)
+difficulty_scaler = 2.1
+is_closed_shape = true

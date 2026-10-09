@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://entities/enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Texture2D" path="res://Assets/Temp/ghost_ENEMY.png" id="2_tex"]
+
+[node name="Phantom" instance=ExtResource("1_enemy")]
+display_name = "Phantom"
+max_health = 18.0
+max_speed = 62.0
+contact_damage = 6.0
+contact_cooldown = 0.7
+bob_height = 3.0
+base_tint = Color(0.42, 0.32, 0.65, 1)
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_tex")
